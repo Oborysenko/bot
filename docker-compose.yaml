@@ -26,7 +26,7 @@ services:
 
   fluentd:
     container_name: fluentd
-    image: fluent/fluentd
+    image: jsliang/fluentd-plugin-mongo
     restart: always
     ports:
       - 24224:24224
