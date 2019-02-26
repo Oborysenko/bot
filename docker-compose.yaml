@@ -19,12 +19,9 @@ services:
 
   fluentd:
     container_name: fluentd
-    build:
-      context: .
-      dockerfile: build/fluentd/Dockerfile 
-    image: fluentd
+    image: fluent/fluentd
     restart: always
-    ports: 
+    ports:
       - 24224:24224
       #- 9880:9880  #web interface
     volumes:
