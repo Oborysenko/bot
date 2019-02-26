@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  nginx:
+    image: nginx:1.13
+    ports:
+      - 80:80
+    volumes:
+      - ./src:/usr/share/nginx/html
+
+  mongo:
+    image: mongo
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+
+  fluentd:
+    container_name: fluentd
+    build:
+      context: .
+      dockerfile: build/fluentd/Dockerfile 
+    image: fluentd
+    restart: always
+    ports: 
+      - 24224:24224
+      #- 9880:9880  #web interface
+    volumes:
+      - ./conf/fluentd:/fluentd/etc
+      # - ./data/fluentd/log:/fluentd/log
+      # - ./data/fluentd/pos:/fluentd/pos
+      # - /opt/dionaea/var/lib/dionaea:/fluentd/sources/dionaea
+      # - /opt/cowrie-docker/data/log:/fluentd/sources/cowrie
+    # environment:
+    #   - FLUENTD_CONF=fluentd.cfg
+    #  FLUENT_UID:
