@@ -5,6 +5,13 @@ services:
     image: nginx:1.13
     ports:
       - 80:80
+    logging:
+      driver: fluentd  
+      options:
+        fluentd-address: localhost:24224
+        tag: httpd.access
+    depends_on:  
+      - "fluentd" 
     volumes:
       - ./src:/usr/share/nginx/html
 
