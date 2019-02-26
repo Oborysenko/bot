@@ -32,7 +32,7 @@ services:
       - 24224:24224
       #- 9880:9880  #web interface
     volumes:
-      - ./conf/fluentd:/fluentd/etc
+      - ./fluentd:/fluentd/etc
       # - ./data/fluentd/log:/fluentd/log
       # - ./data/fluentd/pos:/fluentd/pos
       # - /opt/dionaea/var/lib/dionaea:/fluentd/sources/dionaea
